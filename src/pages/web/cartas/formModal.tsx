@@ -273,9 +273,9 @@ const ModalForm : FC<any> =  ({ carta,loadCounter }) => {
      :
         <>
             <Row className="">
-                                    <Col md={2} >
-                                    </Col>
-                                    <Col md={22} >
+                <Col xs={0} md={2} >
+                </Col>
+                <Col xs={24} md={22} >
                                         {
 
                                             cartasIndex !== undefined
@@ -312,7 +312,7 @@ const ModalForm : FC<any> =  ({ carta,loadCounter }) => {
                                                 })
                                                 : null
                                         }
-                                    </Col>
+                </Col>
 
 
             </Row>
@@ -326,7 +326,7 @@ const ModalForm : FC<any> =  ({ carta,loadCounter }) => {
             </Row>
 
             <Row className="container-carac">
-                                <Col md={16}>
+                                <Col xs={12} md={16}>
                                     {
                                         terminaciones !== undefined
                                             ?
@@ -366,7 +366,7 @@ const ModalForm : FC<any> =  ({ carta,loadCounter }) => {
                                     }
 
                                 </Col>
-                                <Col md={8}>
+                                <Col xs={12} md={8}>
                                     <h5><b>Stock's</b></h5>
                                     {
 
@@ -397,12 +397,12 @@ const ModalForm : FC<any> =  ({ carta,loadCounter }) => {
                                 </Col>
             </Row>
             <Row>
-                                <Col md={12} >
+                                <Col xs={12} md={12} >
                                     <Row className="container-quantity">
                                         <ContadorDetalle cantidadOnChange={handleCantidadOnChange} />
                                     </Row>
                                 </Col>
-                                <Col md={12} className="container-addcar" >
+                                <Col xs={12} md={12} className="container-addcar" >
                                     {
                                         stock > 0
                                             ?

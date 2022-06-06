@@ -282,6 +282,9 @@ width: 100%;
     background-color: #212529;
     text-align: center;
 }
+.ant-menu-vertical{
+    background-color: #212529!important;   
+}
 .menu{
     background-color: #212529;
     color:white;
@@ -309,3 +312,52 @@ width: 100%;
 .cursor-not-allowed{
     cursor:not-allowed;
 }
+
+.container-button-advance{
+    width: 100%;
+}
+.container-solicitudes{
+    text-align: center;
+    padding: 50px;
+}
+/*MOBILE*/
+@media only screen and (max-width: 600px) {
+    .container-searhing {
+      padding: 20px;
+    }
+    .container-counter-card{
+        margin-right: 25%;
+        float: right;
+    }
+    .container-image-inicio{
+        padding: 10px;
+    }
+    .container-image{
+        width: 100%;
+    }
+    .ant-modal{
+        margin:5px 8px!important;
+    }
+    .col-search-advance{
+        padding: 0px;
+    }
+    .selButton-search-advance{
+        width: 170px;
+    }
+    .container-solicitudes{
+        padding: 0px;
+        text-align: center;
+    }
+    .galeria-input{
+        width: 50px;
+    }
+    .tr-cantidad{
+        width: 150px;
+    }
+    .tr-delete{
+        width: 100px;
+    }
+    .menu-compress{
+        font-size: 25px!important;
+    }
+  }

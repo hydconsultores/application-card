@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import Headers from "../pages/web/header";
 import Footers from "../pages/web/footer";
-import HomePage from "../pages/web/home";
 import InicioPage from "../pages/web/inicio";
 import CartaDetallePage from "../pages/web/cartas/cartaDetalle";
 import { ReservasService } from "../api/microservices/Reservas";
@@ -13,22 +12,17 @@ export default function Routes() {
   const [carCounter, setCarCounter] = useState(0 as number);
   
   useEffect(() => {
-    console.log("useEffect")
     loadCounter().then();
   })
 
   const loadCounter = async () => {
-    console.log("ENTRANDO AL CONTADOR")
     let tokenSession = sessionStorage.getItem('key')
-    console.log("tokenSession",tokenSession)
     if(tokenSession !== null){
       let body={
         token:sessionStorage.getItem('key')
       }
       ReservasService.finByToken(body).then((result) => {
-        console.log(result)
         if (result.error) {
-            console.log("entré")
             let mensaje = ''
             if (typeof result.error === 'object') {
                 const obj = result.error as any;
@@ -47,13 +41,10 @@ export default function Routes() {
         } else {
             if (result.status == 200 || result.status == 201) {
                 if (result.data !== undefined) {
-                  console.log(result.data)
                   setCarCounter(result.data.length)
                   window.sessionStorage.setItem("carcounter", result.data.length);
                 }
             } else {
-                console.log("else")
-                console.log(result.data)
                 Modal.error({
                     content: result.data.description,
                 });

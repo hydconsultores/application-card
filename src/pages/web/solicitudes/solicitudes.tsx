@@ -1,41 +1,22 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/jsx-no-target-blank */
 import React, { FC, useEffect, useState } from "react";
-import { Row, Col, Layout, Modal, Alert, Spin, Button, Input, Radio, AutoComplete, Tag, message, Space, Table, Form } from "antd";
-import { CartasService } from "../../../api/microservices/Cartas";
-
+import { Row, Col, Layout, Modal, Button, Input, Table, Form } from "antd";
 import { ReservasService } from "../../../api/microservices/Reservas";
-
-import { CondicionesService } from "../../../api/microservices/Condiciones";
-import { TerminacionesService } from "../../../api/microservices/Terminaciones";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 import { useHistory, useLocation, useParams } from "react-router-dom";
-
-import CloseSquareFilled from "@ant-design/icons/lib/icons/CloseSquareFilled";
 import RollbackOutlined from "@ant-design/icons/lib/icons/RollbackOutlined";
-import ContadorDetalle from "../utilidades/contadorDetalle";
-import Header from "../header";
 import Column from "antd/lib/table/Column";
-import Contador from "../utilidades/contador";
 import ContadorCar from "../utilidades/contadorCar";
 import { SolicitudesService } from "../../../api/microservices/Solicitudes";
-var bcrypt = require('bcryptjs');
-
 
     const Solicitudes : FC<any> = ({ loadCounter}) => {
-
     const location = useLocation();
-    const _idPagina = useParams() as any;
     const history = useHistory();
-    let idiomasCreados = [] as any
     const [data, setData] = useState([] as any)
     const [isLoading, setIsLoading] = useState(false)
     const [enviando, setEnviando] = useState(false)
 
     useEffect(() => {
-        console.log("entrando ")
-        console.log(sessionStorage.getItem('key'))
          loadReservas().then();
     }, [location,loadCounter])
 
@@ -62,7 +43,6 @@ var bcrypt = require('bcryptjs');
           } else {
             if (result.data !== undefined) {
                 setIsLoading(false);
-               console.log("data de reservas",result.data)
                if(result.data.length > 0){
                 let array = [] as any 
                 result.data.map((productos: any) => {
@@ -94,8 +74,6 @@ var bcrypt = require('bcryptjs');
       }
       
       const remove = (producto:any) => {
-        console.log('producto:', producto);
-                console.log("acá")
                 ReservasService.desactiveReserva({id_reserva:producto}).then((result) => {
                     if (result.error) {
                         let mensaje = ''
@@ -111,7 +89,6 @@ var bcrypt = require('bcryptjs');
                         }
                       } else {
                         if (result.data !== undefined) {
-                           console.log("data de reservas",result.data)
                            loadCounter()
                            loadReservas().then()
                         }
@@ -120,10 +97,8 @@ var bcrypt = require('bcryptjs');
       };
 
       const onChangeCantidad = (values:any,producto:any) => {
-        console.log('values:', values);
         producto.cantidad = values;
         ReservasService.updateContador(producto).then((result) => {
-            console.log("result",result)
             if (result.error) {
                 setIsLoading(false);
                 let mensaje = ''
@@ -143,7 +118,6 @@ var bcrypt = require('bcryptjs');
               } else {
                 if (result.data !== undefined) {
                     setIsLoading(false);
-                   console.log("data de reservas",result.data)
                    if(result.data.length > 0){
                     let array = [] as any 
                     result.data.map((productos: any) => {
@@ -175,8 +149,6 @@ var bcrypt = require('bcryptjs');
       const onFinish = (values:any) => {
         setEnviando(true);
         values["token"] = sessionStorage.getItem('key');
-        console.log('Success:', values);
-
         SolicitudesService.updateReserva(values).then((result) => {
             if (result.error) {
                 setEnviando(false);
@@ -207,17 +179,9 @@ var bcrypt = require('bcryptjs');
                 }
               }
         })
-
       };
-    
-      
-      const emailValid = () => {
-          return "hola"
-    }
 
-    
     const validInputTextDirection = (value:any) => {
-        console.log("validar",value)
         if (/^[^$%&|<>?()/*@!¡¿·=]*$/.test(value)) {
           return true;
         } else {
@@ -226,7 +190,6 @@ var bcrypt = require('bcryptjs');
   }
 
     const validInputText = (value:any) => {
-        console.log("validar",value)
         if (/^[^$%&|<>#?()/*@!¡¿·=]*$/.test(value)) {
           return true;
         } else {
@@ -238,7 +201,6 @@ var bcrypt = require('bcryptjs');
     }
 
       const onFinishFailed = (errorInfo:any) => {
-          console.log("errorInfo",errorInfo)
         Modal.error({
             content: 'Debes completar todos los campos',
           });
@@ -259,7 +221,7 @@ var bcrypt = require('bcryptjs');
 
                     :
                     <Row justify="center" >
-                        <Col md={24}>
+                        <Col xs={24} md={24}>
                             <Row>
                                 <Col md={2}> <Button className="list-galeria-volver" type="primary" onClick={() => { history.push("/") }} icon={<RollbackOutlined />}>
                                 Volver
@@ -267,20 +229,20 @@ var bcrypt = require('bcryptjs');
                             </Row>
                         </Col>
 
-                        <Col md={24}>
+                        <Col xs={24} md={24}>
                             <Row>
-                                <Col md={2}></Col>
-                                <Col md={20}>
+                                <Col xs={1} md={2}></Col>
+                                <Col xs={22} md={20}>
                                 <Form
                                     onFinish={onFinish}
                                     onFinishFailed={onFinishFailed}
                                     autoComplete="off">
                                     <Row>   
-                                        <Col md={2}></Col>
-                                        <Col md={20} style={{textAlign:"center", padding:"50px"}} > <h2> Solicitud de Pedido</h2> 
-                                        <Row style={{padding:"10px"}}>
-                                            <Col md={1}></Col>
-                                            <Col md={7}>
+                                        <Col xs={0} md={2}></Col>
+                                        <Col xs={24} md={20} className="container-solicitudes" > <h2> Solicitud de Pedido</h2> 
+                                        <Row>
+                                            <Col xs={0} md={1}></Col>
+                                            <Col xs={24} md={7}>
                                             <Form.Item
                                                 name="nombre"
                                                 rules={[
@@ -303,7 +265,7 @@ var bcrypt = require('bcryptjs');
                                             </Form.Item>    
                                             </Col>
                                             <Col md={1}></Col>
-                                            <Col md={7}>
+                                            <Col xs={24} md={7}>
                                                 <Form.Item
                                                     name="apellido_pat"
                                                     rules={[
@@ -325,8 +287,8 @@ var bcrypt = require('bcryptjs');
                                                     <Input placeholder="Apellido Paterno" />
                                                 </Form.Item>
                                             </Col>
-                                            <Col md={1}></Col>
-                                            <Col md={7}>
+                                            <Col xs={0} md={1}></Col>
+                                            <Col xs={24} md={7}>
                                                 <Form.Item
                                                         name="apellido_mat"
                                                         rules={[
@@ -349,9 +311,9 @@ var bcrypt = require('bcryptjs');
                                                 </Form.Item>
                                             </Col>
                                         </Row>
-                                        <Row style={{padding:"10px"}}>
-                                            <Col md={1}></Col>
-                                            <Col md={7}>
+                                        <Row>
+                                            <Col xs={0} md={1}></Col>
+                                            <Col xs={24} md={7}>
                                                 <Form.Item
                                                         name="correo"
                                                         rules={[
@@ -365,8 +327,8 @@ var bcrypt = require('bcryptjs');
                                                     <Input placeholder="Correo" />
                                                 </Form.Item>
                                             </Col>
-                                            <Col md={1}></Col>
-                                            <Col md={7}>
+                                            <Col xs={0} md={1}></Col>
+                                            <Col xs={24} md={7}>
                                                 <Form.Item
                                                         name="telefono"
                                                         rules={[
@@ -380,8 +342,8 @@ var bcrypt = require('bcryptjs');
                                                     <Input  type="number" prefix="+569"  placeholder="47474747" />
                                                 </Form.Item>
                                             </Col>
-                                            <Col md={1}></Col>
-                                            <Col md={7}>
+                                            <Col xs={0} md={1}></Col>
+                                            <Col xs={24} md={7}>
                                                 <Form.Item
                                                         name="direccion"
                                                         rules={[
@@ -403,26 +365,29 @@ var bcrypt = require('bcryptjs');
                                                     <Input placeholder="Dirección" />
                                                 </Form.Item>    
                                             </Col>
-                                            <Col md={1}></Col>
+                                            <Col xs={0} md={1}></Col>
                                         </Row>
                                         </Col>
-                                        <Col md={2}></Col>
+                                        <Col xs={0} md={2}></Col>
                                     </Row>                
                                     <Row> 
-                                        <Col md={2}></Col>
-                                        <Col md={20}>
+                                        <Col xs={0} md={2}></Col>
+                                        <Col xs={24} md={20}>
                                             {
                                                 data !== []
                                                 ?
-                                                <Table dataSource={data}>
-                                                    <Column title="Nombre Carta" dataIndex="nombre_carta" key="nombre_carta" />
-                                                    <Column title="Edición" dataIndex="edicion" key="edicion" />
-                                                    <Column title="Condición" dataIndex="condicion" key="condicion" />
-                                                    <Column title="Estado" dataIndex="estado" key="estado" />
-                                                    <Column title="Idioma" dataIndex="idioma" key="idioma" />
-                                                    <Column title="Precio" dataIndex="precio_unitario" key="precio_unitario" />
-                                                    <Column title="Cantidad" dataIndex="action" key="action" ></Column>
-                                                    <Column title="Eliminar" dataIndex="delete" key="delete" ></Column>
+                                                <Table    
+                                                  scroll={{
+                                                    x: true,
+                                                  }} dataSource={data}>
+                                                    <Column title="Nombre Carta" dataIndex="nombre_carta" key="nombre_carta" responsive={['xs','sm','md']}/>
+                                                    <Column title="Edición" dataIndex="edicion" key="edicion" responsive={['xs','sm','md']}/>
+                                                    <Column title="Condición" dataIndex="condicion" key="condicion" responsive={['xs','sm','md']}/>
+                                                    <Column title="Estado" dataIndex="estado" key="estado" responsive={['xs','sm','md']}/>
+                                                    <Column title="Idioma" dataIndex="idioma" key="idioma" responsive={['xs','sm','md']}/>
+                                                    <Column title="Precio" dataIndex="precio_unitario" key="precio_unitario" responsive={['xs','sm','md']}/>
+                                                    <Column title="Cantidad" dataIndex="action" key="action" responsive={['xs','sm','md']} className="tr-cantidad" ></Column>
+                                                    <Column title="Eliminar" dataIndex="delete" key="delete" responsive={['xs','sm','md']} className="tr-delete" ></Column>
                                                 </Table>
                                                 :
 
@@ -430,20 +395,20 @@ var bcrypt = require('bcryptjs');
                                             }
 
                                         </Col>
-                                        <Col md={2}></Col>
+                                        <Col xs={0} md={2}></Col>
                                     </Row> 
                                     <Row>
-                                        <Col md={10}></Col>
-                                        <Col md={6} className="col-search-advance">
+                                        <Col xs={5} md={10}></Col>
+                                        <Col xs={14} md={6} className="col-search-advance">
                                             <Button loading={enviando} htmlType="submit" className="selButton-search-advance">
                                             Enviar Solicitud
                                             </Button>
                                         </Col>
-                                        <Col md={8}></Col>
+                                        <Col xs={5} md={8}></Col>
                                     </Row>   
                                 </Form>
                                 </Col>
-                                <Col md={2}></Col>
+                                <Col xs={1} md={2}></Col>
                             </Row>
                         </Col>
 

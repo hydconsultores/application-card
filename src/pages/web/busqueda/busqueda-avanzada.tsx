@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col, Layout, Modal, Alert, Spin, Button, Input, Radio, AutoComplete, Dropdown, Menu, Select, Tag, Form, Collapse } from "antd";
-import { useHistory, useLocation, useParams } from "react-router-dom";
+import { Row, Col, Layout, Modal, Button, Tag, Collapse, Select } from "antd";
+import { useHistory } from "react-router-dom";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 import { TerminacionesService } from "../../../api/microservices/Terminaciones";
 import { CondicionesService } from "../../../api/microservices/Condiciones";
 import RollbackOutlined from "@ant-design/icons/lib/icons/RollbackOutlined";
+import ClearOutlined from "@ant-design/icons/lib/icons/ClearOutlined";
 import { EdicionesService } from "../../../api/microservices/Ediciones";
 import { ColoresService } from "../../../api/microservices/Colores";
 import { LegalitiesService } from "../../../api/microservices/Legalities";
@@ -26,9 +27,6 @@ type Props = {
 }
 
 export default function BusquedaAvanzada(props: Props) {
-
-    const location = useLocation();
-    const _idPagina = useParams() as any;
     const history = useHistory();
     const [isLoading, setIsLoading] = useState(false)
     const [condiciones, setCondiciones] = useState([] as any)
@@ -478,10 +476,13 @@ export default function BusquedaAvanzada(props: Props) {
                 <Col md={10}> <Button className="list-galeria-volver" type="primary" onClick={() => { history.push("/") }} icon={<RollbackOutlined />}>
                 Volver
                 </Button></Col>
-                <Col md={8} className="container-bloque-cabecera-title">
+            </Row>
+            <Row className="container-bloque-cabecera">
+                <Col xs={2} md={10}></Col>    
+                <Col xs={20} md={8} className="container-bloque-cabecera-title">
                     <h4>Búsqueda Avanzada</h4>
                 </Col>
-                <Col  md={6}></Col>
+                <Col  xs={2} md={6}></Col>
             </Row>
 
             <Collapse  activeKey={[activeKey]} onChange={ closePanel} style={{width:"100%"}}>
@@ -494,11 +495,11 @@ export default function BusquedaAvanzada(props: Props) {
                     <Col md={1} ></Col>
                     <Col md={11} className="container-search-advance">
                         <Row>
-                        <Col md={24} className="container-search-advance">
+                        <Col xs={24} md={24} className="container-search-advance">
                             <Row>
                             {/* tipos*/} 
-                            <Col md={8}>Tipos:</Col>
-                            <Col md={16}>
+                            <Col xs={8} md={8}>Tipos:</Col>
+                            <Col xs={16} md={16}>
                                 <Select
                                     mode="multiple"
                                     placeholder="Seleccione tipos"
@@ -517,11 +518,11 @@ export default function BusquedaAvanzada(props: Props) {
                                 </Col>
                             </Row>
                         </Col>
-                        <Col md={24} className="container-search-advance">
+                        <Col xs={24} md={24} className="container-search-advance">
                             <Row>
                             {/*sub-tipos*/} 
-                            <Col md={8}>Sub Tipos:</Col>
-                            <Col md={16}>
+                            <Col xs={8} md={8}>Sub Tipos:</Col>
+                            <Col xs={16} md={16}>
                                 <Select
                                     mode="multiple"
                                     placeholder="Seleccione sub tipos"
@@ -540,11 +541,11 @@ export default function BusquedaAvanzada(props: Props) {
                                 </Col>
                             </Row>
                         </Col>
-                        <Col md={24} className="container-search-advance">
+                        <Col xs={24} md={24} className="container-search-advance">
                             <Row>
                             {/*super tipos*/} 
-                            <Col md={8}>Super Tipos:</Col>
-                            <Col md={16}>
+                            <Col xs={8} md={8}>Super Tipos:</Col>
+                            <Col xs={16} md={16}>
                                 <Select
                                     mode="multiple"
                                     placeholder="Seleccione super tipos"
@@ -563,11 +564,11 @@ export default function BusquedaAvanzada(props: Props) {
                                 </Col>
                             </Row>
                         </Col>
-                        <Col md={24} className="container-search-advance">
+                        <Col xs={24} md={24} className="container-search-advance">
                             <Row>
                             {/*rarezas*/} 
-                            <Col md={8}>Rarezas:</Col>
-                            <Col md={16}>
+                            <Col xs={8} md={8}>Rarezas:</Col>
+                            <Col xs={16} md={16}>
                                 <Select
                                     mode="multiple"
                                     placeholder="Seleccione rarezas"
@@ -583,11 +584,11 @@ export default function BusquedaAvanzada(props: Props) {
                             </Col>
                             </Row>
                         </Col>
-                        <Col md={24} className="container-search-advance">
+                        <Col xs={24} md={24} className="container-search-advance">
                             <Row> 
                             {/*colors*/} 
-                            <Col md={8}>Colores:</Col>
-                            <Col md={16}>
+                            <Col xs={8} md={8}>Colores:</Col>
+                            <Col xs={16} md={16}>
                                 <Select
                                     mode="multiple"
                                     placeholder="Seleccione colores"
@@ -608,11 +609,11 @@ export default function BusquedaAvanzada(props: Props) {
     
                     <Col md={11} className="container-search-advance">
                         <Row>
-                        <Col md={24} className="container-search-advance">
+                        <Col xs={24} md={24} className="container-search-advance">
                             <Row> 
                             {/*legalities*/} 
-                            <Col md={8}>Legalidad:</Col>
-                            <Col md={16}>
+                            <Col xs={8} md={8}>Legalidad:</Col>
+                            <Col xs={16} md={16}>
                                 <Select
                                     mode="multiple"
                                     placeholder="Seleccione Legalidad"
@@ -628,11 +629,11 @@ export default function BusquedaAvanzada(props: Props) {
                                 </Col>
                             </Row>
                         </Col>  
-                        <Col md={24} className="container-search-advance">
+                        <Col xs={24} md={24} className="container-search-advance">
                             <Row>
                                 {/*lenguajes*/} 
-                                <Col md={8}>Idiomas:</Col>
-                                <Col md={16}>
+                                <Col xs={8} md={8}>Idiomas:</Col>
+                                <Col xs={16} md={16}>
                                     <Select
                                         mode="multiple"
                                         placeholder="Seleccione idiomas"
@@ -651,11 +652,11 @@ export default function BusquedaAvanzada(props: Props) {
                                 </Col>
                             </Row>
                         </Col>
-                        <Col md={24} className="container-search-advance">
+                        <Col xs={24} md={24} className="container-search-advance">
                             <Row>
                             {/*termination*/}
-                            <Col md={8}>Terminaciones:</Col>
-                            <Col md={16}>
+                            <Col xs={8} md={8}>Terminaciones:</Col>
+                            <Col xs={16} md={16}>
                                     <Select
                                         mode="multiple"
                                         placeholder="Seleccione terminaciones"
@@ -672,11 +673,11 @@ export default function BusquedaAvanzada(props: Props) {
                             </Col>
                             </Row>
                         </Col>    
-                        <Col md={24} className="container-search-advance">
+                        <Col xs={24} md={24} className="container-search-advance">
                             <Row> 
                             {/*condition*/} 
-                            <Col md={8}>Condiciones:</Col>
-                            <Col md={16}>
+                            <Col xs={8} md={8}>Condiciones:</Col>
+                            <Col xs={16} md={16}>
                                 <Select
                                     mode="multiple"
                                     placeholder="Seleccione condiciones"
@@ -692,11 +693,11 @@ export default function BusquedaAvanzada(props: Props) {
                                 </Col>
                             </Row>
                         </Col>  
-                        <Col md={24} className="container-search-advance">
+                        <Col xs={24} md={24} className="container-search-advance">
                             <Row> 
                             {/*edition*/} 
-                            <Col md={8}>Ediciones:</Col>
-                            <Col md={16}>
+                            <Col xs={8} md={8}>Ediciones:</Col>
+                            <Col xs={16} md={16}>
                                 <Select
                                     mode="multiple"
                                     placeholder="Seleccione ediciones"
@@ -719,20 +720,22 @@ export default function BusquedaAvanzada(props: Props) {
                     </Col>
                     <Col md={1} ></Col>
                     
-                    <Col md={8}></Col>
-                    <Col md={4} className="col-search-advance">
+                    <Row className="container-button-advance">
+                    <Col xs={1} md={8}></Col>
+                    <Col xs={10} md={4} className="col-search-advance">
                         <Button className="selButton-search-advance" onClick={onFinish}>
                         Buscar
                         </Button>
                     </Col>
-                    <Col md={1}></Col>
-                    <Col md={4} className="col-search-advance">
+                    <Col xs={2} md={1}></Col>
+                    <Col xs={10} md={4} className="col-search-advance">
                         <Button className="selButton-search-advance" onClick={clearFilter}>
+                        <ClearOutlined />
                         Limpiar filtros
                         </Button>
                     </Col>
-                    <Col md={7}></Col>
-
+                    <Col xs={1} md={7}></Col>
+                    </Row>                    
                 </Row>
                 </Panel>
                 

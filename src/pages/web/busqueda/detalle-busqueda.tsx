@@ -63,7 +63,6 @@ export default function DetalleBusqueda(props: Props) {
   const [contadorPaginacion, setContadorPaginacion] = useState(0 as number);
 
   const onChange = (page: number) => {
-    console.log(page);
     setCurrent(page);
   };
 
@@ -187,7 +186,6 @@ export default function DetalleBusqueda(props: Props) {
         }
       } else {
         if (result.data !== undefined) {
-          console.log("result.data",result.data)
           setIsLoading(false)
           setCartasInicio(result.data.cartas)
           setContadorPaginacion( (Math.round(result.data.contador/isLimit))*10 )
@@ -224,14 +222,14 @@ export default function DetalleBusqueda(props: Props) {
             <Col md={13}></Col>
             <Col md={3} className="list-galeria" ></Col>
 
-            <Col md={2}>
+            <Col xs={7} md={2}>
               <Dropdown overlay={mostrar} className="list-galeria">
                 <Button>
                   Mostrar {isLimit} <DownOutlined />
                 </Button>
               </Dropdown>
             </Col>
-            <Col md={3}  >
+            <Col xs={7} md={3}  >
               <Dropdown overlay={ordenar} className="list-galeria">
                 <Button>
                    {isOrder} <DownOutlined />
@@ -245,7 +243,7 @@ export default function DetalleBusqueda(props: Props) {
                 :
 
                 cartasInicio.map((cartas: any) =>
-                  <Col md={6} className="container-image-inicio" >
+                  <Col xs={11} md={6} className="container-image-inicio" >
 
                     <Row className='container-title-image-inicio'>
                       <Col md={2}></Col>
@@ -261,11 +259,8 @@ export default function DetalleBusqueda(props: Props) {
                       />
                     </a>
                     <Row className='container-pie-image-inicio'>
-                      <Col md={6} className="galeria-price-input"><b>${cartas.precio}</b></Col>
-                      <Col md={12}>
-                        <Contador />
-                      </Col>
-                      <Col md={6}>
+                      <Col xs={10} md={6} className="galeria-price-input"><b>${cartas.precio}</b></Col>
+                      <Col xs={14} md={6}>
                         <ModalForm carta={cartas} loadCounter={props.loadCounter}/>
                       </Col>
 

@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-no-target-blank */
-import { SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory, useLocation, useParams } from "react-router-dom";
-import { Row, Col, Layout, Modal, Alert, Spin, Button, Input, Radio, AutoComplete, Dropdown, Menu, Pagination } from "antd";
+import { Row, Col, Layout, Modal, Button,Dropdown, Menu, Pagination } from "antd";
 import { CartasService } from "../../api/microservices/Cartas";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
@@ -101,9 +101,7 @@ export default function InicioPage(props: Props) {
       token: sessionStorage.getItem('key')
   }
   SolicitudesService.crearSolicitud(body).then((result) => {
-    console.log(result)
     if (result.error) {
-        console.log("entré")
         setIsLoading(false);
         let mensaje = ''
         if (typeof result.error === 'object') {
@@ -126,8 +124,6 @@ export default function InicioPage(props: Props) {
 
             }
         } else {
-            console.log("else")
-            console.log(result.data)
             Modal.error({
                 content: result.data.description,
             });
@@ -135,22 +131,18 @@ export default function InicioPage(props: Props) {
 
     }
 })
-
 }
 
 const onChange = (page: number) => {
-  console.log(page);
   setCurrent(page);
 };
 
 const loadCartas = async () => {
     let idEdicion = null;
-    console.log(Object.keys(_idPagina))
     if (Object.keys(_idPagina).length > 0) {
       if (location.pathname !== undefined) {
         let idCartaPathString = location.pathname.replace("/edition/", "");
         idEdicion = parseInt(idCartaPathString)
-        console.log(idEdicion)
       }
     }
 
@@ -205,22 +197,22 @@ const loadCartas = async () => {
               <Col md={2}></Col>
             }
 
-            <Col md={13}></Col>
-            <Col md={3} className="list-galeria" >
+            <Col xs={0} md={13}></Col>
+            <Col xs={11} md={3} className="list-galeria" >
               <a href={"/advance-search"}>
                 <Button icon={<SearchOutlined />}>
                   Búsqueda Avanzada
                 </Button>
               </a></Col>
 
-            <Col md={2}>
+            <Col xs={7} md={2}>
               <Dropdown overlay={mostrar} className="list-galeria">
                 <Button>
                   Mostrar {isLimit} <DownOutlined />
                 </Button>
               </Dropdown>
             </Col>
-            <Col md={3}  >
+            <Col xs={6} md={3}  >
               <Dropdown overlay={ordenar} className="list-galeria">
                 <Button>
                    {isOrder} <DownOutlined />
@@ -234,7 +226,7 @@ const loadCartas = async () => {
                 :
 
                 cartasInicio.map((cartas: any) =>
-                  <Col md={6} className="container-image-inicio" >
+                  <Col xs={11} md={6} className="container-image-inicio" >
 
                     <Row className='container-title-image-inicio'>
                       <Col md={2}></Col>
@@ -262,8 +254,8 @@ const loadCartas = async () => {
 
                     </a>
                     <Row className='container-pie-image-inicio'>
-                      <Col md={14} className="galeria-price-input"><b>${cartas.precio}</b></Col>
-                      <Col md={10}>
+                      <Col xs={10} md={14} className="galeria-price-input"><b>${cartas.precio}</b></Col>
+                      <Col xs={14} md={10}>
                         <ModalForm carta={cartas} loadCounter={props.loadCounter}/>
                       </Col>
 

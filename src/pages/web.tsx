@@ -101,9 +101,9 @@ export default function LayoutApp() {
       >
         <div className="center-flex" style={{ width: 300 }}>
           <img
-            src="https://microservices.starken.cl/movil/love.gif"
+            src="f"
             width="300"
-            alt="Created with love by EGT"
+            alt=""
           />
         </div>
       </Modal>

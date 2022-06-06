@@ -14,21 +14,15 @@ import { useHistory, useLocation, useParams } from "react-router-dom";
 
 import RollbackOutlined from "@ant-design/icons/lib/icons/RollbackOutlined";
 import ContadorDetalle from "../utilidades/contadorDetalle";
-import Header from "../header";
 import imageNotFound from '../../../images/not-found-image.jpeg';
 var bcrypt = require('bcryptjs');
 
-
     const CartaDetallePage : FC<any> = ({ loadCounter, }) => {
-
     const location = useLocation();
     const _idPagina = useParams() as any;
     const history = useHistory();
     let idiomasCreados = [] as any
     
-    //para notificaciones de cargas
-    const [value, setValue] = React.useState(1);
-    const [urlImage, setUrlImage] = useState('')
     const [cartasIndex, setCartasIndex] = useState([] as any)
     const [cartaLegalities, setCartaLegalities] = useState([] as any)
 
@@ -55,9 +49,7 @@ var bcrypt = require('bcryptjs');
 
 
     useEffect(() => {
-
         let data = sessionStorage.getItem('key');
-        console.log("data",data)
         let date: Date = new Date();
         let fecha_final= date.getDay()+"-"+(date.getMonth()+1)+"-"+date.getFullYear()
         if(data === null){
@@ -80,8 +72,6 @@ var bcrypt = require('bcryptjs');
 
 
     const addCarro = () => {
-        console.log("cartasIndexSelected", cartasIndexSelected)
-        console.log("cantidad", cantidad)
         let idCartaPath = 0;
         if (Object.keys(_idPagina).length > 0) {
             if (location.pathname !== undefined) {
@@ -112,11 +102,8 @@ var bcrypt = require('bcryptjs');
                 token :sessionStorage.getItem('key')
             }
         }
-        console.log(body)
         ReservasService.crearReserva(body).then((result) => {
-            console.log(result)
             if (result.error) {
-                console.log("entré")
                 setIsLoading(false);
                 let mensaje = ''
                 if (typeof result.error === 'object') {
@@ -155,8 +142,6 @@ var bcrypt = require('bcryptjs');
                         loadCounter()
                     }
                 } else {
-                    console.log("else")
-                    console.log(result.data)
                     Modal.error({
                         content: result.data.description,
                     });
@@ -169,8 +154,6 @@ var bcrypt = require('bcryptjs');
 
 
     const changeConditionTermination = (condicion: any, terminacion: any) => {
-        console.log("condicion", condicion)
-        console.log("condicion", terminacion)
         setConditionTermination(condicion + "-" + terminacion)
 
         let encontrado = 0;
@@ -180,7 +163,6 @@ var bcrypt = require('bcryptjs');
                 cartas.id_terminacion.id == terminacion &&
                 cartas.id_lenguaje.id == idiomaSeleccionado.id) {//encontré la condicion
                 encontrado = 1;
-                console.log(cartas)
                 setNombre(cartas.nombre)
                 setImageUrl(cartas.imagen)
                 setPrecio(cartas.precio)
@@ -202,7 +184,6 @@ var bcrypt = require('bcryptjs');
     }
 
     const changeIdioma = (carta: any) => {
-        console.log("carta", carta)
         setCartasIndexSelected(carta.id)
 
         setNombre(carta.nombre)
@@ -216,8 +197,6 @@ var bcrypt = require('bcryptjs');
             let arr = conditionTermination.split("-");
             let condicion = arr[0]
             let terminacion = arr[1]
-            console.log(condicion)
-            console.log(terminacion)
             let encontrado = 0;
             cartasIndex.map((cartas: any) => {
 
@@ -225,7 +204,6 @@ var bcrypt = require('bcryptjs');
                     cartas.id_terminacion.id == terminacion &&
                     cartas.id_lenguaje.id == carta.id_lenguaje.id) {//encontré la condicion
                     encontrado = 1;
-                    console.log(cartas)
                     setNombre(cartas.nombre)
                     setImageUrl(cartas.imagen)
                     setPrecio(cartas.precio)

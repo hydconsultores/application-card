@@ -1,5 +1,5 @@
-import React, { FC, Props, useEffect, useState } from "react";
-import { Row, Col, Layout, Modal, Alert, Spin, Input,Button, Radio, AutoComplete, Dropdown, Menu } from "antd";
+import React, { FC, useState } from "react";
+import { Input,Button} from "antd";
 import MinusOutlined from "@ant-design/icons/lib/icons/MinusOutlined";
 import PlusOutlined from "@ant-design/icons/lib/icons/PlusOutlined";
 
@@ -34,7 +34,6 @@ const ContadorDetalle : FC<any> = ({ cantidadOnChange }) => {
     const deprecateCount = (increment: any) => {
         
         if( (count + increment) < 0){
-            console.log("count",count)
             return
         }
         setCount(count + increment)

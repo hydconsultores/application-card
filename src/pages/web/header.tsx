@@ -1,11 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { FC, useState, useEffect, useRef } from "react";
-import { Menu, Row, Col, Form, Input, Modal, Tooltip, Affix, Layout, Button, Badge } from "antd";
+import React, { FC, useState, useEffect } from "react";
+import { Menu, Row, Col, Modal, Tooltip, Layout, Badge } from "antd";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
-
-
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebookSquare,
@@ -16,25 +13,14 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 import { CartasService } from "../../api/microservices/Cartas";
-import { EdicionesService } from "../../api/microservices/Ediciones";
 import { MenuService } from "../../api/microservices/Menu";
 import {
-  CaretDownOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  ShoppingCartOutlined
+  ShoppingCartOutlined,
+  PlusCircleOutlined
 } from "@ant-design/icons";
-import HomePage from "./home";
-import { Redirect, useHistory } from "react-router-dom";
-import { SolicitudesService } from "../../api/microservices/Solicitudes";
-import { ReservasService } from "../../api/microservices/Reservas";
-
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
-
+import { useHistory } from "react-router-dom";
 
   const Header : FC<any> = ({ loadCounter,carCounter }) => {
-  console.log("carCounter",carCounter)
   let history = useHistory();
 
   const [top] = useState(0);
@@ -46,27 +32,19 @@ const MenuItemGroup = Menu.ItemGroup;
   const [idCartaSelected, setIdCartaSelected] = useState(null)
   const [value, setValue] = useState('');
 
-
   const handleClick = (e: any) => {
-    console.log('click ', e);
     setStateMenu({
       current: e.key,
     });
-
   }
 
   useEffect(() => {
-    console.log("useEffect")
     loadMenu().then();
   }, [stateMenu])
 
-
-
   const searchOptions = async (data: any) => {
-    console.log(data.target.value)
     if (data.target.value.length > 3) {
       CartasService.obtenerCartas(data.target.value).then((result) => {
-        //setIsLoading(false);
         if (result.error) {
           let mensaje = ''
           if (typeof result.error === 'object') {
@@ -81,7 +59,6 @@ const MenuItemGroup = Menu.ItemGroup;
           }
         } else {
           setCartas(result.data)
-          console.log("result.data", result.data)
           const options2: React.SetStateAction<any[]> = [];
           result.data.forEach((cartas: any) => {
             let json = {
@@ -98,35 +75,12 @@ const MenuItemGroup = Menu.ItemGroup;
     }else if(data.target.value.length === 0){
       setOptions([])
     }
-
-
-
   }
 
-  /*const loadEdition = async () => {
-    EdicionesService.obtenerEdiciones().then((result) => {
-      //setIsLoading(false);
-      if (result.error) {
-        let mensaje = ''
-        if (typeof result.error === 'object') {
-          const obj = result.error as any;
-          mensaje = obj.data.error;
-        } else if (typeof result.error === 'string') {
-          mensaje = result.error;
-        } else {
-          Modal.error({
-            content: 'Lo sentimos, no hemos podido cargar los roles',
-          });
-        }
-      } else {
-        console.log("ediciones", result.data)
-      }
-    })
-  }*/
+
 
   const loadMenu = async () => {
     MenuService.obetnerMenu("ACTIVE").then((result) => {
-      //setIsLoading(false);
       if (result.error) {
         let mensaje = ''
         if (typeof result.error === 'object') {
@@ -141,16 +95,13 @@ const MenuItemGroup = Menu.ItemGroup;
         }
       } else {
         setMenu(result.data)
-        console.log("menu", result.data)
       }
     })
   }
   const onSelect = (data: any) => {
-    console.log(data)
     if(data!=null){
       setCartaSelected(data.id)
       options.forEach((cartas: any) => {
-        console.log(cartas)
         if (cartas.id === data.id){
           setIdCartaSelected(cartas.id)
           history.push("/cards/" + cartas.id);
@@ -159,8 +110,6 @@ const MenuItemGroup = Menu.ItemGroup;
     }else{
       setOptions([])
     }
-
-
   };
 
   let inputRef;
@@ -170,7 +119,7 @@ const MenuItemGroup = Menu.ItemGroup;
 
         <Row className="container-header">
 
-          <Col md={6} className="container-network-social">
+          <Col xs={0} md={6} className="container-network-social">
             <Tooltip placement="bottom" title={"Facebook"} >
               <a target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon
@@ -216,7 +165,7 @@ const MenuItemGroup = Menu.ItemGroup;
               </a>
             </Tooltip>
           </Col>
-          <Col md={14} >
+          <Col xs={18} md={14} className="container-searhing">
 
             <Autocomplete
             style={{backgroundColor:"white", marginTop:"2%"}}
@@ -240,17 +189,18 @@ const MenuItemGroup = Menu.ItemGroup;
               )}
             />
           </Col>
-          <Col md={4} className="info-company">
+          <Col xs={6} md={4} className="info-company">
             <p>Lago Bertrand 120</p>
           </Col>
         </Row>
         <Row >
-          <Col md={1} className="container-menu"></Col>
-          <Col md={18} className="container-menu">
+          <Col xs={0} md={1} className="container-menu"></Col>
+          <Col xs={20} md={18} className="container-menu">
             {
               menu.length > 0
                 ?
                 <Menu
+                overflowedIndicator={<PlusCircleOutlined className="menu-compress"/>}
                   onClick={handleClick}
                   selectedKeys={[stateMenu.current]}
                   mode="horizontal"
@@ -278,7 +228,7 @@ const MenuItemGroup = Menu.ItemGroup;
             }
 
           </Col>
-          <Col md={4} className="container-menu">
+          <Col xs={4} md={4} className="container-menu car-menu">
             {
               carCounter > 0
               ?
@@ -296,7 +246,7 @@ const MenuItemGroup = Menu.ItemGroup;
             }
 
           </Col>
-          <Col md={1} className="container-menu"></Col>
+          <Col xs={0} md={1} className="container-menu"></Col>
         </Row>
       </Layout>
 

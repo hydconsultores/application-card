@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-no-target-blank */
 import React, { useEffect, useState } from "react";
-import { Row, Col, Layout, Modal, Alert, Spin, Button, Input, Radio, AutoComplete } from "antd";
+import { Row, Col, Layout, Modal,Button, Radio } from "antd";
 import { CartasService } from "../../api/microservices/Cartas";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
@@ -16,11 +16,8 @@ type Props = {
 
 
 export default function HomePage(props: Props) {
-  console.log("entre a home")
   //para notificaciones de cargas
   const [value, setValue] = React.useState(1);
-
-  const [urlImage, setUrlImage] = useState('')
   const [cartasIndex, setCartasIndex] = useState([] as any)
   const [nombre, setNombre] = useState('')
   const [imageUrl, setImageUrl] = useState('')
@@ -34,17 +31,12 @@ export default function HomePage(props: Props) {
   const [rareza, setRareza] = useState('')
   const [tipoConcatenado, setTipoConcatenado] = useState('')
   
-  
-  
   useEffect(() => {
-    console.log("homepahe")
     loadCartas().then();
 
   }, [props])
 
-
   const changeIdioma = (carta: any) => {
-    console.log("carta",carta)
     setImageUrl(carta.imagen)
     setIdiomaSeleccionado(carta.id_lenguaje)
     setTexto(carta.texto)
@@ -52,10 +44,7 @@ export default function HomePage(props: Props) {
     setTipoConcatenado(carta.tipo_concatenado)
 }
 
-
-
   const loadCartas = async () => {
-    console.log("homepage load")
     setIsLoading(true);
     CartasService.obtenerCartasId(props.idCarta).then((result) => {
 
@@ -74,7 +63,6 @@ export default function HomePage(props: Props) {
         }
       } else {
         if (result.data !== undefined) {
-          console.log(result.data)
           setCartasIndex(result.data.cartasIndex)
           setNombre(result.data.nombre)
           setImageUrl(result.data.cartasIndex[0].imagen)
@@ -87,9 +75,6 @@ export default function HomePage(props: Props) {
           setRareza(result.data.cartasIndex[0].id_rareza.nombre)
           setTipoConcatenado(result.data.cartasIndex[0].tipo_concatenado)
           setIsLoading(false);
-          /*setTimeout(() => {
-           
-          }, 1000)*/
         }
       }
     })
@@ -131,7 +116,6 @@ export default function HomePage(props: Props) {
                     cartasIndex !== undefined
                       ?
                       cartasIndex.map((carta: { id_lenguaje: { nombre: string | number | boolean | {} | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactNodeArray | React.ReactPortal | null | undefined; }; }) => {
-                        console.log(carta.id_lenguaje.nombre)
                         let classNew="selButtonIdioma selected"
                         if (idiomaSeleccionado.nombre === carta.id_lenguaje.nombre) {
                           classNew="selButtonIdioma selected"

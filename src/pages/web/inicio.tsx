@@ -265,7 +265,7 @@ const loadCartas = async () => {
                 )
             }
   
-              <Col md={24} className="container-pagination">
+              <Col xs={24}  md={24} className="container-pagination">
                   <Pagination current={current} onChange={onChange} total={contadorPaginacion} showSizeChanger={false} />
               </Col>
 

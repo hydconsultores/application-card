@@ -70,7 +70,7 @@ export default function Routes() {
           <InicioPage loadCounter={loadCounter} stateMenu={null} idCarta={undefined} carta={null} title={""} type={"COTIZA"} />
           <Footers />
         </Route>
-        <Route  path={["/request/:id", "/cards/request/:id"]} >
+        <Route  path={["/request/:id", "/cards/request/:id","/edition/request/:id"]} >
           <Headers loadCounter={loadCounter} carCounter={carCounter}/>
           <Solicitudes loadCounter={loadCounter}  />
           <Footers />

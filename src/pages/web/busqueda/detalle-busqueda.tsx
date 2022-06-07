@@ -5,14 +5,9 @@ import { Row, Col, Layout, Modal, Alert, Spin, Button, Input, Radio, AutoComplet
 import { CartasService } from "../../../api/microservices/Cartas";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
-import DownloadOutlined from "@ant-design/icons/lib/icons/DownloadOutlined";
-import MinusOutlined from "@ant-design/icons/lib/icons/MinusOutlined";
-import PlusOutlined from "@ant-design/icons/lib/icons/PlusOutlined";
-import ShoppingCartOutlined from "@ant-design/icons/lib/icons/ShoppingCartOutlined";
+import WarningOutlined from "@ant-design/icons/lib/icons/WarningOutlined";
 import DownOutlined from "@ant-design/icons/lib/icons/DownOutlined";
-import SearchOutlined from "@ant-design/icons/lib/icons/SearchOutlined";
 import RollbackOutlined from "@ant-design/icons/lib/icons/RollbackOutlined";
-import Contador from "../utilidades/contador"
 import { SolicitudesService } from "../../../api/microservices/Solicitudes";
 
 
@@ -186,6 +181,7 @@ export default function DetalleBusqueda(props: Props) {
         }
       } else {
         if (result.data !== undefined) {
+          console.log("result.data.cartas",result.data.cartas)
           setIsLoading(false)
           setCartasInicio(result.data.cartas)
           setContadorPaginacion( (Math.round(result.data.contador/isLimit))*10 )
@@ -268,6 +264,26 @@ export default function DetalleBusqueda(props: Props) {
 
                   </Col>
                 )
+                
+            }
+
+            {
+              cartasInicio.length == 0 && cartaSelected == null
+              ?
+              <Row>
+              <Col xs={24} md={24} className="sin-resultados">
+                <WarningOutlined className="icon-warning" />
+              </Col>
+              
+              <Col xs={24} md={24} className="sin-resultados">
+                <b>
+                  Lo sentimos, no hay resultados
+                </b>
+              </Col>
+              </Row>
+              
+              :
+              null
             }
               <Col md={24} className="container-pagination">
                   <Pagination current={current} onChange={onChange} total={contadorPaginacion} showSizeChanger={false} />

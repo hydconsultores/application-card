@@ -200,7 +200,7 @@ const loadCartas = async () => {
             <Col xs={0} md={13}></Col>
             <Col xs={11} md={3} className="list-galeria" >
               <a href={"/advance-search"}>
-                <Button icon={<SearchOutlined />}>
+                <Button className="list-galeria-button" icon={<SearchOutlined />}>
                   Búsqueda Avanzada
                 </Button>
               </a></Col>

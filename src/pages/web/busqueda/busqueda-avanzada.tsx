@@ -426,16 +426,27 @@ export default function BusquedaAvanzada(props: Props) {
     }
 
     const clearFilter = () => {
-        setSelectedTiposValues([])
-        setSelectedSubTiposValues([])
-        setSelectedSuperTiposValues([])
-        setSelectedRarezasValues([])
-        setSelectedColorsValues([])
-        setSelectedLegalitiesValues([])
-        setSelectedLenguajesValues([])
-        setSelectedTerminationValues([])
-        setSelectedConditionValues([])
-        setSelectedEditionValues([])
+        setSelectedTiposValues([]);
+        setSelectedSubTiposValues([]);
+        setSelectedSuperTiposValues([]);
+        setSelectedRarezasValues([]);
+        setSelectedColorsValues([]);
+        setSelectedLegalitiesValues([]);
+        setSelectedLenguajesValues([]);
+        setSelectedTerminationValues([]);
+        setSelectedConditionValues([]);
+        setSelectedEditionValues([]);
+
+        setSelectedSubTipos(searchToArray(subTipos,[]));
+        setSelectedCondition(searchColorArray(condiciones,[]));
+        setSelectedTermination(searchColorArray(terminaciones,[]));
+        setSelectedEdition(searchToArray(ediciones,[]));
+        setSelectedColors(searchColorArray(colores,[]));
+        setSelectedLegalities(searchColorArray(legalities,[]));
+        setSelectedLenguajes(searchToArray(lenguajes,[]));
+        setSelectedRarezas(searchToArray(rarezas,[]));
+        setSelectedSuperTipos(searchToArray(superTipos,[]));
+        setSelectedTipos(searchToArray(tipos,[]));
     }
 
     const onFinish = () => {
@@ -754,7 +765,7 @@ export default function BusquedaAvanzada(props: Props) {
             openCollapse = {openCollapse}
             loadCounter={props.loadCounter} stateMenu={props.stateMenu} idCarta={props.idCarta} carta={props.carta} title={""}></DetalleBusqueda>
             :
-            null
+            <Row className="antes-busqueda"></Row>
         }
         </Layout>
       </>

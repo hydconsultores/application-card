@@ -133,7 +133,7 @@ font-size: 16px;
     text-align: center;
 }
 
-.list-galeria{
+.list-galeria,.list-galeria-button{
 width: 100%;
 }
 
@@ -320,6 +320,18 @@ width: 100%;
     text-align: center;
     padding: 50px;
 }
+.sin-resultados{
+    text-align: center;
+    font-size: 20px;
+    padding: 20px;
+}
+.icon-warning{
+    font-size: 60px;
+    color:yellow;
+}
+.antes-busqueda{
+    height: 50vh;
+}
 /*MOBILE*/
 @media only screen and (max-width: 600px) {
     .container-searhing {
@@ -359,5 +371,8 @@ width: 100%;
     }
     .menu-compress{
         font-size: 25px!important;
+    }
+    .container-image {
+        height: 25vh;
     }
   }

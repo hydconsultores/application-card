@@ -339,10 +339,10 @@ var bcrypt = require('bcryptjs');
 
                     :
                     <Row justify="center" >
-                        <Col md={2}> <Button className="list-galeria-volver" type="primary" onClick={() => { history.push("/") }} icon={<RollbackOutlined />}>
+                        <Col xs={24} md={2}> <Button className="list-galeria-volver" type="primary" onClick={() => { history.push("/") }} icon={<RollbackOutlined />}>
                             Volver
                         </Button></Col>
-                        <Col md={10} className="container-image-details">
+                        <Col xs={24} md={10} className="container-image-details">
                             {
                                 imageUrl ?
                                 <img
@@ -361,11 +361,11 @@ var bcrypt = require('bcryptjs');
 
 
                         </Col>
-                        <Col md={10} className="containet-tittle-card">
+                        <Col xs={24} md={10} className="containet-tittle-card">
                             <Row className="">
-                                <Col md={2} >
+                                <Col xs={0} md={2} >
                                 </Col>
-                                <Col md={22} >
+                                <Col xs={24} md={22} >
                                     {
 
                                         cartasIndex !== undefined
@@ -415,12 +415,12 @@ var bcrypt = require('bcryptjs');
                             </Row>
 
                             <Row>
-                                <Col md={12} >
+                                <Col xs={12} md={12} >
                                     <Row className="container-quantity">
                                         <ContadorDetalle cantidadOnChange={handleCantidadOnChange} />
                                     </Row>
                                 </Col>
-                                <Col md={12} className="container-addcar" >
+                                <Col xs={12} md={12} className="container-addcar" >
                                     {
                                         stock > 0
                                             ?
@@ -433,7 +433,7 @@ var bcrypt = require('bcryptjs');
                             </Row>
 
                             <Row className="container-carac">
-                                <Col md={16}>
+                                <Col xs={24} md={16}>
                                     {
                                         terminaciones !== undefined
                                             ?
@@ -463,7 +463,7 @@ var bcrypt = require('bcryptjs');
                                     }
 
                                 </Col>
-                                <Col md={8}>
+                                <Col xs={24} md={8}>
                                     <h5><b>Stock's</b></h5>
                                     {
 
@@ -496,12 +496,12 @@ var bcrypt = require('bcryptjs');
 
                             <h3><b>Información sobre la carta</b></h3>
                             <Row className="container-carac">
-                                <Col md={6}><b>Edición</b> </Col><Col className="container-especificaciones" md={18}>{edicion}<hr /> </Col>
-                                <Col md={6}><b>Texto  </b> </Col><Col className="container-especificaciones" md={18}>{texto}<hr /> </Col>
-                                <Col md={6}><b>Rareza </b> </Col><Col className="container-especificaciones" md={18}>{rareza}<hr /> </Col>
-                                <Col md={6}><b>Tipo   </b> </Col><Col className="container-especificaciones" md={18}>{tipoConcatenado}<hr /> </Col>
-                                <Col md={6}><b>Legalities</b>  </Col>
-                                <Col md={18}>
+                                <Col xs={6} md={6}><b>Edición</b> </Col><Col className="container-especificaciones" xs={18} md={18}>{edicion}<hr /> </Col>
+                                <Col xs={6} md={6}><b>Texto  </b> </Col><Col className="container-especificaciones" xs={18} md={18}>{texto}<hr /> </Col>
+                                <Col xs={6} md={6}><b>Rareza </b> </Col><Col className="container-especificaciones" xs={18} md={18}>{rareza}<hr /> </Col>
+                                <Col xs={6} md={6}><b>Tipo   </b> </Col><Col className="container-especificaciones" xs={18} md={18}>{tipoConcatenado}<hr /> </Col>
+                                <Col xs={6} md={6}><b>Legalities</b>  </Col>
+                                <Col xs={18} md={18}>
 
                                     {
                                         cartaLegalities.length > 0
@@ -540,7 +540,7 @@ var bcrypt = require('bcryptjs');
 
                         </Col>
 
-                        <Col md={2}></Col>
+                        <Col md={2} xs={0}></Col>
                     </Row>
 
                 }

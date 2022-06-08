@@ -375,4 +375,7 @@ width: 100%;
     .container-image {
         height: 25vh;
     }
+    .containet-tittle-card{
+        padding: 25px;
+    }
   }

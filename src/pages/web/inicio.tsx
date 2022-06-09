@@ -199,7 +199,7 @@ const loadCartas = async () => {
             }
 
             <Col xs={0} md={13}></Col>
-            <Col xs={11} md={3} className="list-galeria" >
+            <Col xs={10} md={3} className="list-galeria" >
               <a href={"/advance-search"}>
                 <Button className="list-galeria-button" icon={<SearchOutlined />}>
                   Búsqueda Avanzada
@@ -213,7 +213,7 @@ const loadCartas = async () => {
                 </Button>
               </Dropdown>
             </Col>
-            <Col xs={6} md={3}  >
+            <Col xs={7} md={3}  >
               <Dropdown overlay={ordenar} className="list-galeria">
                 <Button>
                    {isOrder} <DownOutlined />

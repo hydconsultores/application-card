@@ -18,7 +18,7 @@ import { SolicitudesService } from "../../../api/microservices/Solicitudes";
 
     useEffect(() => {
          loadReservas().then();
-    }, [location,loadCounter])
+    }, [])
 
     const loadReservas = async () => {
         let body = {

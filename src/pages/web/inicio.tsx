@@ -13,6 +13,7 @@ import { SolicitudesService } from "../../api/microservices/Solicitudes";
 import HomePage from "./home";
 import ModalForm from "./cartas/formModal"
 import imageNotFound from '../../images/not-found-image.jpeg';
+import WarningOutlined from "@ant-design/icons/lib/icons/WarningOutlined";
 
 var bcrypt = require('bcryptjs');
 type Props = {
@@ -263,6 +264,25 @@ const loadCartas = async () => {
 
                   </Col>
                 )
+            }
+
+            {
+              cartasInicio.length == 0 && cartaSelected == null
+              ?
+              <Row>
+              <Col xs={24} md={24} className="sin-resultados">
+                <WarningOutlined className="icon-warning" />
+              </Col>
+              
+              <Col xs={24} md={24} className="sin-resultados">
+                <b>
+                  Lo sentimos, no hay resultados
+                </b>
+              </Col>
+              </Row>
+              
+              :
+              null
             }
   
               <Col xs={24}  md={24} className="container-pagination">

@@ -92,10 +92,10 @@ export default function DetalleBusqueda(props: Props) {
         <a onClick={e => setIsOrder("Recientes")} >Recientes</a>
       </Menu.Item>
       <Menu.Item key="A">
-        <a onClick={e => setIsOrder("Precio Ascendente")}>Precio Ascendente</a>
+        <a onClick={e => setIsOrder("Precio asc")}>Precio asc</a>
       </Menu.Item>
       <Menu.Item key="D">
-        <a onClick={e => setIsOrder("Precio Descendiente")}>Precio Descendiente</a>
+        <a onClick={e => setIsOrder("Precio desc")}>Precio desc</a>
       </Menu.Item>
     </Menu>
   );
@@ -270,7 +270,7 @@ export default function DetalleBusqueda(props: Props) {
             {
               cartasInicio.length == 0 && cartaSelected == null
               ?
-              <Row>
+              <Row className="row-busqueda">
               <Col xs={24} md={24} className="sin-resultados">
                 <WarningOutlined className="icon-warning" />
               </Col>

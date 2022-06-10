@@ -188,7 +188,7 @@ import { ContactoService } from "../../../api/microservices/Contacto";
                                     </Row>    
                                     <Row>
                                         <Col xs={0} md={3}></Col>
-                                        <Col xs={0} md={18} className="container-textarea">
+                                        <Col xs={24} md={18} className="container-textarea">
                                             <Form.Item
                                                     name="comentario"
                                                     rules={[

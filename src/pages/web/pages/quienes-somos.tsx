@@ -46,7 +46,7 @@ import imageNotFound from '../../../images/not-found-image.jpeg';
                                 <Col xs={24} md={20} className="container-form-contacto" > <h2>Quiénes somos</h2> </Col>
                                 <Col xs={1} md={2}></Col>
                             </Row>
-                            <Row>
+                            <Row className="container-text-quienes">
                                 <Col xs={0} md={1}></Col>
                                 <Col xs={24} md={4}>
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 

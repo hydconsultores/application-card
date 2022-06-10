@@ -350,6 +350,9 @@ width: 100%;
 .container-quienes-somos{
     margin-bottom: 10vh;
 }
+.container-text-quiene{
+    padding: 10px;
+}
 /*MOBILE*/
 @media only screen and (max-width: 600px) {
     .container-searhing {

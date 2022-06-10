@@ -336,6 +336,13 @@ width: 100%;
     margin-bottom: 20vh;
     margin-top:10vh;
 }
+.container-textarea{
+    padding: 12px;
+}
+.container-form-contacto{
+    text-align: center;
+    padding: 20px;
+}
 /*MOBILE*/
 @media only screen and (max-width: 600px) {
     .container-searhing {

@@ -8,6 +8,7 @@ import { ReservasService } from "../api/microservices/Reservas";
 import { Modal } from "antd";
 import Solicitudes from "../pages/web/solicitudes/solicitudes";
 import BusquedaAvanzada from "../pages/web/busqueda/busqueda-avanzada";
+import FormContacto from "../pages/web/forms/form-contacto";
 export default function Routes() {
   const [carCounter, setCarCounter] = useState(0 as number);
   
@@ -85,6 +86,12 @@ export default function Routes() {
         <Route exact path={"/advance-search"}>
           <Headers loadCounter={loadCounter} carCounter={carCounter}/>
           <BusquedaAvanzada loadCounter={loadCounter} stateMenu={null} idCarta={undefined} carta={null} title={""}/>
+          <Footers />
+        </Route>
+
+        <Route exact path={"/form-contacto"}>
+          <Headers loadCounter={loadCounter} carCounter={carCounter}/>
+          <FormContacto loadCounter={loadCounter} />
           <Footers />
         </Route>
 

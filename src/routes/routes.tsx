@@ -9,6 +9,7 @@ import { Modal } from "antd";
 import Solicitudes from "../pages/web/solicitudes/solicitudes";
 import BusquedaAvanzada from "../pages/web/busqueda/busqueda-avanzada";
 import FormContacto from "../pages/web/forms/form-contacto";
+import QuienesSomos from "../pages/web/pages/quienes-somos";
 export default function Routes() {
   const [carCounter, setCarCounter] = useState(0 as number);
   
@@ -92,6 +93,12 @@ export default function Routes() {
         <Route exact path={"/form-contacto"}>
           <Headers loadCounter={loadCounter} carCounter={carCounter}/>
           <FormContacto loadCounter={loadCounter} />
+          <Footers />
+        </Route>
+
+        <Route exact path={"/quienes-somos"}>
+          <Headers loadCounter={loadCounter} carCounter={carCounter}/>
+          <QuienesSomos loadCounter={loadCounter} />
           <Footers />
         </Route>
 
